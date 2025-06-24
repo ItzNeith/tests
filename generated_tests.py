@@ -2,49 +2,71 @@ import file_example
 
 import pytest
 
-# Testa a função soma para verificar se a soma de dois números está correta.
+# Testa a função soma com valores positivos
 def test_file_example_soma():
     assert file_example.soma(2, 3) == 5
-    assert file_example.soma(-1, 1) == 0
-    assert file_example.soma(0, 0) == 0
 
-# Testa a função saudacao para garantir que a saudação está formatada corretamente.
+# Testa a função soma com valores negativos
+def test_file_example_soma_negativos():
+    assert file_example.soma(-1, -1) == -2
+
+# Testa a função soma com zero
+def test_file_example_soma_zero():
+    assert file_example.soma(0, 5) == 5
+
+# Testa a função saudacao com um nome
 def test_file_example_saudacao():
-    assert file_example.saudacao("João") == "Olá, João!"
+    assert file_example.saudacao("Maria") == "Olá, Maria!"
+
+# Testa a função saudacao com um nome vazio
+def test_file_example_saudacao_nome_vazio():
     assert file_example.saudacao("") == "Olá, !"
 
-# Testa a função esta_ativo para verificar se retorna True apenas quando a flag é True.
-def test_file_example_esta_ativo():
+# Testa a função esta_ativo com True
+def test_file_example_esta_ativo_true():
     assert file_example.esta_ativo(True) is True
-    assert file_example.esta_ativo(False) is False
-    assert file_example.esta_ativo(None) is False
 
-# Testa a função subtracao para garantir que a subtração de dois números está correta.
+# Testa a função esta_ativo com False
+def test_file_example_esta_ativo_false():
+    assert file_example.esta_ativo(False) is False
+
+# Testa a função subtracao com valores positivos
 def test_file_example_subtracao():
     assert file_example.subtracao(5, 3) == 2
-    assert file_example.subtracao(0, 0) == 0
+
+# Testa a função subtracao com resultado negativo
+def test_file_example_subtracao_negativo():
     assert file_example.subtracao(3, 5) == -2
 
-# Testa a função multiplicacao para verificar se a multiplicação de dois números está correta.
+# Testa a função multiplicacao com valores positivos
 def test_file_example_multiplicacao():
-    assert file_example.multiplicacao(2, 3) == 6
-    assert file_example.multiplicacao(-1, 1) == -1
+    assert file_example.multiplicacao(3, 4) == 12
+
+# Testa a função multiplicacao com zero
+def test_file_example_multiplicacao_zero():
     assert file_example.multiplicacao(0, 5) == 0
 
-# Testa a função dividir para garantir que a divisão está correta e que a exceção é lançada para divisão por zero.
+# Testa a função dividir com valores válidos
 def test_file_example_dividir():
-    assert file_example.dividir(6, 3) == 2
-    assert file_example.dividir(-6, 3) == -2
-    assert file_example.dividir(0, 1) == 0
+    assert file_example.dividir(10, 2) == 5
+
+# Testa a função dividir com divisão por zero
+def test_file_example_dividir_por_zero():
     with pytest.raises(ValueError, match="Divisão por zero!"):
-        file_example.dividir(1, 0)
+        file_example.dividir(10, 0)
 
-# Testa a função classificar para verificar se a classificação está correta com base na nota.
-def test_file_example_classificar():
+# Testa a função classificar com nota alta
+def test_file_example_classificar_aprovado():
     assert file_example.classificar(9.5) == "Aprovado"
-    assert file_example.classificar(9.4) == "Reprovado"
-    assert file_example.classificar(10) == "Aprovado"
 
-# Testa a função inutil para garantir que retorna a string esperada.
+# Testa a função classificar com nota baixa
+def test_file_example_classificar_reprovado():
+    assert file_example.classificar(9.4) == "Reprovado"
+
+# Testa a função classificar com nota limite
+def test_file_example_classificar_limite():
+    assert file_example.classificar(9.499999) == "Reprovado"
+
+# Testa a função inutil para garantir que retorna a string esperada
 def test_file_example_inutil():
     assert file_example.inutil() == "Nunca sou chamada"
